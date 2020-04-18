@@ -162,18 +162,16 @@ No X11 DISPLAY variable was set, but this program performed an operation which r
 
 Cause:
 The UNIX DISPLAY environment variable has not been set properly.
-Environment
 
 Check what the value of the DISPLAY environment variable is:
 
 # echo $DISPLAY
 
 Resolving The Problem:
-If the value returned is blank or not the correct hostname, correct the DISPLAY value by exporting the DISPLAY environment variable. The syntax for this command is:
+If the value returned is blank or not the correct hostname, correct the DISPLAY value by exporting the DISPLAY environment variable.
+The syntax for this command is -
 
 #export DISPLAY=<hostname_to_display_X11_graphics_to>:0.0
-
-Similar errors occur for the resourceregistry.sh and mgmtconsole.sh utilities and can also be corrected by exporting the DISPLAY environment variable.
 
 
 I wrote this script to resolve issue, and named it "run_prog.sh" as an example.
