@@ -140,7 +140,7 @@ So here I want to run a GUI program via an SSH hop, but program can only run as 
 
 I logon the server via a normal Linux user, via SSH.
 
-$ ssh -X <username>@<URL os IP address>
+$ ssh -X username@URL os IP address
 
 Example
 
@@ -150,7 +150,7 @@ Then SUDO or SU to root.
 And try to run program, but is fails with error:
 No X11 DISPLAY variable was set, but this program performed an operation which requires it.
 
-I wrote this script to resolve issue.
+I wrote this script to resolve issue, and name it "run_prog.sh" as an example.
 
 #########
 
@@ -163,7 +163,7 @@ if [ -z "$1" ]
   then
      echo -e " \n "
      echo -e " Please run script as follow \n "
-     echo -e " <program name> <your username> \n "
+     echo -e " run_prog.sh {your username } \n "
      exit
 
          else
@@ -173,7 +173,7 @@ export DISPLAY=localhost:10.0
 
 fi
 
-<program name> &
+{program name} &
 
 #########
 
