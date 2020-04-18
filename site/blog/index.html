@@ -140,7 +140,7 @@ So here I want to run a GUI program via an SSH hop, but program can only run as 
 
 I logon the server via a normal Linux user, via SSH.
 
-$ ssh -X username@URL os IP address
+$ ssh -X {username} @ {URL os IP address}
 
 Example
 
@@ -152,6 +152,8 @@ No X11 DISPLAY variable was set, but this program performed an operation which r
 
 I wrote this script to resolve issue, and name it "run_prog.sh" as an example.
 
+  </center>
+  
 #########
 
 #!/bin/bash
@@ -177,6 +179,7 @@ fi
 
 #########
 
+  <center>
       </p>
     </pre>
     <img border="0" src="../images/blog.page.images/xrdp01.image1.png">
