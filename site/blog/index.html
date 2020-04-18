@@ -68,7 +68,7 @@ div.content {
 <div class="sidebar">
   <a class="active" href="#home">Home</a>
   <a href="#xrdp01">XRDP over XRDP hop</a>
-  <a href="#new01">New</a>
+  <a href="#X1101">New</a>
 </div>
 
 <div class="content" id="home">
@@ -128,8 +128,59 @@ Go to Advanced setting in the Connection profile and enable.
   <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
 </svg>
     
-<div class="content" id="new01">
-  <pre>Empty...</pre>
+<div class="content" id="X1101">
+  <center>
+    <pre>
+      <p class="a">
+        <h3>
+X11 - No X11 DISPLAY variable was set, but this program performed an operation which requires it.
+        </h3>
+
+So here I want to run a GUI program via an SSH hop, but program can only run as root.
+
+I logon the server via a normal Linux user, via SSH.
+
+$ ssh -X <username>@<URL os IP address>
+
+Example
+
+$ ssh -X Bob@example.com
+
+Then SUDO or SU to root.
+And try to run program, but is fails with error:
+No X11 DISPLAY variable was set, but this program performed an operation which requires it.
+
+I wrote this script to resolve issue.
+
+#########
+
+#!/bin/bash
+
+#Script created to resolve an X11 issuses.
+
+if [ -z "$1" ]
+
+  then
+     echo -e " \n "
+     echo -e " Please run script as follow \n "
+     echo -e " <program name> <your username> \n "
+     exit
+
+         else
+
+xauth add $( xauth -f /home/$1/.Xauthority list | tail -1 )
+export DISPLAY=localhost:10.0
+
+fi
+
+<program name> &
+
+#########
+
+      </p>
+    </pre>
+    <img border="0" src="../images/blog.page.images/xrdp01.image1.png">
+  </center>
 </div>
 
 </body>
