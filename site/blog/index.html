@@ -69,6 +69,7 @@ div.content {
   <a class="active" href="#home">Home</a>
   <a href="#xrdp01">XRDP over XRDP hop</a>
   <a href="#X1101">No X11 DISPLAY variable</a>
+  <a href="#ping01">Blocked ping requests</a>
 </div>
 
 <div class="content" id="home">
@@ -91,6 +92,8 @@ I just put stuff in here, that I had to troubleshoot or develop...
        <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
    </svg>
 </center>
+  
+#######################################################
   
 <div class="content" id="xrdp01">
   <center>
@@ -136,6 +139,8 @@ Go to Advanced setting in the Connection profile and enable.
        <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
    </svg>
 </center>
+  
+#######################################################
     
 <div class="content" id="X1101">
   <center>
@@ -216,6 +221,37 @@ fi
        <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
    </svg>
 </center>
+
+#######################################################
+  
+<div class="content" id="ping01">
+  <center>
+    <pre>
+      <p class="a">
+        <h3>
+One of my customers blocked ICMP Ping requests on there network.
+        </h3>
+
+I looked around, and found meany scripts, that do similar things.
+But could not find a proper BASH script.
+
+So I wrote one.
+
+https://github.com/clarsen-007/portpinger
+
+It ping via an TCP port.
+        
+    </pre>
+  </center>
+</div>
+
+<center>
+   <svg height="5" width="800">
+       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+   </svg>
+</center> 
+
+#######################################################
 
 </body>
 </html>
