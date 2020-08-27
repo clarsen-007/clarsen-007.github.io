@@ -1,1 +1,258 @@
-Site creation in progress...
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p.a {
+  font-family: Arial;
+  font-size: 16px;
+}
+  
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #f0800a;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1600px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a class="active" href="#home">Home</a>
+  <a href="#xrdp01">XRDP over XRDP hop</a>
+  <a href="#X1101">No X11 DISPLAY variable</a>
+  <a href="#ping01">Blocked ping requests</a>
+</div>
+
+<div class="content" id="home">
+  <center>
+    <pre>
+      <p class="a">
+Hello World...
+
+These are my Blog pages.
+It's a very plain and simple HTML pages, with a menu on the left.
+
+I just put stuff in here, that I had to troubleshoot or develop...
+      </p>
+    </pre>
+  </center>
+</div>
+  
+<center>
+   <svg height="5" width="800">
+       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+   </svg>
+</center>
+  
+<!-- ####################################################### -->
+  
+<div class="content" id="xrdp01">
+  <center>
+    <pre>
+      <p class="a">
+        <h3>
+Remmina - over two hops - Does not connect to xRDP, displays black screen and shows "Reconnection in progress 1 of 20"
+        </h3>
+
+So this is difficult to explain, but here we go.
+        
+Hop 1:
+I use my laptop (Kubuntu 18.04) to xRDP into a VM server (Xubuntu 19.04).
+So here I create one xRDP connection - using xorgxrdp 1:0.2.9-1 on the VM server.
+
+Hop 2:
+I create a VPN connection to office VPN, with openfortivpn client.
+I then xRDP into another VM server at the office (Kubuntu 19.10), but this fails.
+
+Error is as follow.
+I can see the xRDP logon screen for a second, then it disappears and I see message on  screen -
+"Reconnection in progress 1 of 20"
+The screen then loops between xRDP logon screen and Reconnection error.
+
+After several days of fault finding and looking at firewall logs, Linux syslogs and google'ling the works,
+I found a very obscure post that describes issue.
+Issue is related to libfreerdp.
+
+To fix it enable the following switches in Remmina.
+Go to Advanced setting in the Connection profile and enable.
+
+- Relax order checks
+- Glyph cache
+
+      </p>
+    </pre>
+    <img border="0" src="../images/blog.page.images/xrdp01.image1.png">
+  </center>
+</div>
+  
+<center>
+   <svg height="5" width="800">
+       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+   </svg>
+</center>
+  
+<!-- ####################################################### -->
+    
+<div class="content" id="X1101">
+  <center>
+    <pre>
+      <p class="a">
+        <h3>
+X11 - No X11 DISPLAY variable was set, but this program performed an operation which requires it.
+        </h3>
+
+So here I want to run a GUI program via an SSH hop, but program can only run as root.
+
+I logon to the server via a normal Linux user, via SSH.
+
+$ ssh -X {your username} @ {URL os IP address}
+
+Example
+
+$ ssh -X Bob@example.com
+
+Then SUDO or SU to root.
+And try to run program, but is fails with error:
+
+No X11 DISPLAY variable was set, but this program performed an operation which requires it.
+
+
+Cause:
+The UNIX DISPLAY environment variable has not been set properly.
+
+Check what the value of the DISPLAY environment variable is:
+
+# echo $DISPLAY
+
+Resolving The Problem:
+If the value returned is blank or not the correct hostname, correct the DISPLAY value by exporting the DISPLAY environment variable.
+The syntax for this command is -
+
+#export DISPLAY=<hostname_to_display_X11_graphics_to>:0.0
+
+
+I wrote this script to resolve issue, and named it "run_prog.sh" as an example.
+
+      </p>
+    </pre>
+  </center>
+
+    <pre>
+  
+#########
+
+#!/bin/bash
+
+#Script created to resolve an X11 issuses.
+
+if [ -z "$1" ]
+
+  then
+     echo -e " \n "
+     echo -e " Please run script as follow \n "
+     echo -e " run_prog.sh {your username} \n "
+     echo -e " Where {username} is the user you logged on with, not the root user. "
+     exit
+
+         else
+
+xauth add $( xauth -f /home/$1/.Xauthority list | tail -1 )
+export DISPLAY=localhost:10.0
+
+fi
+
+{program name} &
+
+#########
+
+    </pre>
+</div>
+
+<center>
+   <svg height="5" width="800">
+       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+   </svg>
+</center>
+
+<!-- ####################################################### -->
+  
+<div class="content" id="ping01">
+  <center>
+    <pre>
+      <p class="a">
+        <h3>
+One of my customers blocked ICMP Ping requests on there network.
+        </h3>
+
+I looked around, and found meany scripts, that do similar things.
+But could not find a proper BASH script.
+
+So I wrote one.
+
+<a href=https://github.com/clarsen-007/portpinger>https://github.com/clarsen-007/portpinger</a>
+
+It pings via the TCP port.
+        
+    </pre>
+  </center>
+</div>
+
+<center>
+   <svg height="5" width="800">
+       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+   </svg>
+</center> 
+
+<!-- ####################################################### -->
+
+</body>
+</html>
