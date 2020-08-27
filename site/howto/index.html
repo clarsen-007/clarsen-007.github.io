@@ -98,37 +98,32 @@ Some how to documentation...
     <pre>
       <p class="a">
         <h3>
-Remmina - over two hops - Does not connect to xRDP, displays black screen and shows "Reconnection in progress 1 of 20"
+Enable Google Authenticator on you Linux XRDP connections.
         </h3>
 
-So this is difficult to explain, but here we go.
-        
-Hop 1:
-I use my laptop (Kubuntu 18.04) to xRDP into a VM server (Xubuntu 19.04).
-So here I create one xRDP connection - using xorgxrdp 1:0.2.9-1 on the VM server.
+First configure SSH 2FA.
 
-Hop 2:
-I create a VPN connection to office VPN, with openfortivpn client.
-I then xRDP into another VM server at the office (Kubuntu 19.10), but this fails.
+1) Change /etc/pam.d/xrdp-sesman file as follow.
+$ cat /etc/pam.d/xrdp-sesman
+#%PAM-1.0
+#@include common-auth
+#@include common-account
+#@include common-session
+#@include common-password
+#auth required pam_google_authenticator.so
+auth required pam_google_authenticator.so forward_pass
+auth required pam_unix.so use_first_pass
 
-Error is as follow.
-I can see the xRDP logon screen for a second, then it disappears and I see message on  screen -
-"Reconnection in progress 1 of 20"
-The screen then loops between xRDP logon screen and Reconnection error.
+2) Then create link to google auth file.
+ln -s ~/.ssh/.google_authenticator ~/.google_authenticator
+$ ls -hail
+262235 lrwxrwxrwx  1 username username   41 Sep  4 12:10 .google_authenticator -> ~/.ssh/.google_authenticator
 
-After several days of fault finding and looking at firewall logs, Linux syslogs and google'ling the works,
-I found a very obscure post that describes issue.
-Issue is related to libfreerdp.
-
-To fix it enable the following switches in Remmina.
-Go to Advanced setting in the Connection profile and enable.
-
-- Relax order checks
-- Glyph cache
+3) Test - login with XRDP client to server.
+In Password field use ---  password+oth "password12346"
 
       </p>
     </pre>
-    <img border="0" src="../images/blog.page.images/xrdp01.image1.png">
   </center>
 </div>
   
@@ -140,117 +135,5 @@ Go to Advanced setting in the Connection profile and enable.
   
 <!-- ####################################################### -->
     
-<div class="content" id="X1101">
-  <center>
-    <pre>
-      <p class="a">
-        <h3>
-X11 - No X11 DISPLAY variable was set, but this program performed an operation which requires it.
-        </h3>
-
-So here I want to run a GUI program via an SSH hop, but program can only run as root.
-
-I logon to the server via a normal Linux user, via SSH.
-
-$ ssh -X {your username} @ {URL os IP address}
-
-Example
-
-$ ssh -X Bob@example.com
-
-Then SUDO or SU to root.
-And try to run program, but is fails with error:
-
-No X11 DISPLAY variable was set, but this program performed an operation which requires it.
-
-
-Cause:
-The UNIX DISPLAY environment variable has not been set properly.
-
-Check what the value of the DISPLAY environment variable is:
-
-# echo $DISPLAY
-
-Resolving The Problem:
-If the value returned is blank or not the correct hostname, correct the DISPLAY value by exporting the DISPLAY environment variable.
-The syntax for this command is -
-
-#export DISPLAY=<hostname_to_display_X11_graphics_to>:0.0
-
-
-I wrote this script to resolve issue, and named it "run_prog.sh" as an example.
-
-      </p>
-    </pre>
-  </center>
-
-    <pre>
-  
-#########
-
-#!/bin/bash
-
-#Script created to resolve an X11 issuses.
-
-if [ -z "$1" ]
-
-  then
-     echo -e " \n "
-     echo -e " Please run script as follow \n "
-     echo -e " run_prog.sh {your username} \n "
-     echo -e " Where {username} is the user you logged on with, not the root user. "
-     exit
-
-         else
-
-xauth add $( xauth -f /home/$1/.Xauthority list | tail -1 )
-export DISPLAY=localhost:10.0
-
-fi
-
-{program name} &
-
-#########
-
-    </pre>
-</div>
-
-<center>
-   <svg height="5" width="800">
-       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
-   </svg>
-</center>
-
-<!-- ####################################################### -->
-  
-<div class="content" id="ping01">
-  <center>
-    <pre>
-      <p class="a">
-        <h3>
-One of my customers blocked ICMP Ping requests on there network.
-        </h3>
-
-I looked around, and found meany scripts, that do similar things.
-But could not find a proper BASH script.
-
-So I wrote one.
-
-<a href=https://github.com/clarsen-007/portpinger>https://github.com/clarsen-007/portpinger</a>
-
-It pings via the TCP port.
-        
-    </pre>
-  </center>
-</div>
-
-<center>
-   <svg height="5" width="800">
-       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
-   </svg>
-</center> 
-
-<!-- ####################################################### -->
-
 </body>
 </html>
