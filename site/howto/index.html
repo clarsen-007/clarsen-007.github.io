@@ -121,10 +121,12 @@ auth required pam_unix.so use_first_pass
 ln -s ~/.ssh/.google_authenticator ~/.google_authenticator
 
 $ ls -hail
-123456 lrwxrwxrwx  1 username username   1 Jan  0 00:00 .google_authenticator -> ~/.ssh/.google_authenticator
+000000 lrwxrwxrwx  0 username username   0 Jan  0 00:00 .google_authenticator -> ~/.ssh/.google_authenticator
 
 3) Test - login with XRDP client to server.
 In Password field use ---  password+oth "password12346"
+
+123456 here refers to the 2FA code...
 
       </p>
     </pre>
