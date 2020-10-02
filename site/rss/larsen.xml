@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
     <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>The Lunduke Show</title>
-        <link>http://www.lunduke.com</link>
+        <title>IT Security News Feed</title>
+        <link>https://clarsen-007.github.io</link>
         <image>
-            <url>http://vault.lunduke.com/SquareLogo.png</url>
-            <title>The Lunduke Show</title>
-            <link>http://www.lunduke.com</link>
+            <url>http://.........png</url>
+            <title>IT Security News Feed</title>
+            <link>https://clarsen-007.github.io</link>
         </image>
         <description>
 Linux.  Retro computing.  Technology News.  You know... important stuff.
         </description>
         <language>en-us</language>
-        <copyright>Copyright 2016, Bryan Lunduke</copyright>
-        <atom:link href="http://www.lunduke.com/LundukeShowMP3.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Sat, 22 Dec 2018 06:00:00 PDT</lastBuildDate>
-        <itunes:author>Bryan Lunduke</itunes:author>
+        <copyright>No for now</copyright>
+        <atom:link href="https://clarsen-007.github.io/site/rss/larsen.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Fri, 02 Oct 2020 19:00:00 CET</lastBuildDate>
+        <itunes:author>clarsen-007</itunes:author>
         <itunes:summary>
 Linux.  Retro computing.  Technology News.  You know... important stuff.
         </itunes:summary>
