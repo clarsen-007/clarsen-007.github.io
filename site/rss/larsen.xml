@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <rss>
+    <channel>
+        <title>IT Security News Feed</title>
+        <link>https://clarsen-007.github.io</link>
+        <image>
+            <url>http://.........png</url>
+            <title>IT Security News Feed</title>
+            <link>https://clarsen-007.github.io</link>
+        </image>
+        <description>
+Linux.  Retro computing.  Technology News.  You know... important stuff.
+        </description>
+        <language>en-us</language>
+        <copyright>No for now</copyright>
+        <lastBuildDate>Fri, 02 Oct 2020 19:00:00 CET</lastBuildDate>
+        <pubDate>Fri, 02 Oct 2020 19:00:00 CET</pubDate>
+
+<!--New Items Here-->
+
+
+<item> <title>Test</title> <link>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</link> <pubDate>Fri, 02 Oct 2020 19:00:00 CET</pubDate> <description>Test</description> <enclosure url="http://vault.lunduke.com/mp3/20200909-POTSand.mp3" length="36715125" type="audio/mpeg" /> <guid>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</guid> <itunes:duration>8:30</itunes:duration> <itunes:summary>POTS and ISDN were awesome</itunes:summary> <itunes:image href="http://www.lunduke.com/SquareLogo.png"/> <itunes:keywords></itunes:keywords> <itunes:explicit>no</itunes:explicit> </item>
+
+    </channel>
+</rss>
