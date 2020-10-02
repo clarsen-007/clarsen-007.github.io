@@ -19,7 +19,14 @@ Linux.  Retro computing.  Technology News.  You know... important stuff.
 <!--New Items Here-->
 
 
-<item> <title>Test</title> <link>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</link> <pubDate>Fri, 02 Oct 2020 19:00:00 CET</pubDate> <description>Test</description> <enclosure url="http://vault.lunduke.com/mp3/20200909-POTSand.mp3" length="36715125" type="audio/mpeg" /> <guid>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</guid> <itunes:duration>8:30</itunes:duration> <itunes:summary>POTS and ISDN were awesome</itunes:summary> <itunes:image href="http://www.lunduke.com/SquareLogo.png"/> <itunes:keywords></itunes:keywords> <itunes:explicit>no</itunes:explicit> </item>
+<item>
+    <title>Test</title>
+    <link>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</link>
+    <pubDate>Fri, 02 Oct 2020 19:00:00 CET</pubDate>
+    <description>Test</description>
+    <enclosure url="http://vault.lunduke.com/mp3/20200909-POTSand.mp3" length="36715125" type="audio/mpeg" />
+    <guid>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</guid>
+</item>
 
     </channel>
 </rss>
