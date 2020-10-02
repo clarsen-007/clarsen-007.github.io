@@ -33,8 +33,12 @@ Linux.  Retro computing.  Technology News.  You know... important stuff.
     <link>https://www.mangoapps.com/blog/wp-content/uploads/rss-40674_960_720.png</link>
     <pubDate>Fri, 02 Oct 2020 19:00:00 CET</pubDate>
     <description>New - Test - This is my first RSS feed</description>
-    <enclosure url="http://vault.lunduke.com/mp3/20200909-POTSand.mp3" length="36715125" type="audio/mpeg" />
-    <guid>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</guid>
+    <content:encoded><![CDATA[
+<p>The nature of native Linux apps and some good examples.</p>
+<p>This is a Test...<br />
+</p>]]>
+    </content:encoded>
+
 </item>
 
     </channel>
