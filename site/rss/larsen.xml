@@ -8,9 +8,7 @@
             <title>IT Security News Feed</title>
             <link>https://clarsen-007.github.io</link>
         </image>
-        <description>
-Linux.  Retro computing.  Technology News.  You know... important stuff.
-        </description>
+        <description>Everything in IT Security....</description>
         <language>en-us</language>
         <copyright>None for now</copyright>
         <lastBuildDate>Fri, 02 Oct 2020 19:00:00 CET</lastBuildDate>
@@ -24,12 +22,6 @@ Linux.  Retro computing.  Technology News.  You know... important stuff.
     <link>https://www.mangoapps.com/blog/wp-content/uploads/rss-40674_960_720.png</link>
     <pubDate>Fri, 02 Oct 2020 19:00:00 CET</pubDate>
     <description>New - Test - This is my first RSS feed</description>
-    <content:encoded><![CDATA[
-<p>The nature of native Linux apps and some good examples.</p>
-<p>This is a Test...<br />
-</p>]]>
-    </content:encoded>
-
 </item>
 
     </channel>
