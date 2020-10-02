@@ -18,16 +18,7 @@ Linux.  Retro computing.  Technology News.  You know... important stuff.
 
 <!--New Items Here-->
 
-
-<item>
-    <title>Test</title>
-    <link>https://www.mangoapps.com/blog/wp-content/uploads/rss-40674_960_720.png</link>
-    <pubDate>Fri, 02 Oct 2020 19:00:00 CET</pubDate>
-    <description>Test - This is my first RSS feed</description>
-    <enclosure url="http://vault.lunduke.com/mp3/20200909-POTSand.mp3" length="36715125" type="audio/mpeg" />
-    <guid>http://vault.lunduke.com/mp3/20200909-POTSand.mp3</guid>
-</item>
-        
+      
 <item>
     <title>New Test</title>
     <link>https://www.mangoapps.com/blog/wp-content/uploads/rss-40674_960_720.png</link>
