@@ -17,6 +17,23 @@
 <!--New Items Here-->
         
 <item>
+    <title>( 2 ) - iOS 14.2 fixes three 0-day vulnerabilities</title>
+    <link></link>
+    <pubDate>Fri, 13 Nov 2020 14:20:00 SAST</pubDate>
+    <description><![CDATA[
+        <p>iOS 14.2 fixes three 0-day vulnerabilities</p>
+        <ul><li>CVE-2020-27930 — a remote code execution issue in the iOS FontParser component that letsattackers run code remotely on iOS devices.</li></ul>
+        <ul><li>CVE-2020-27932 — a privilege escalation vulnerability in the iOS kernel that lets attackersrun malicious code with kernel-level privileges.</li></ul>
+        <ul><li>CVE-2020-27950 — a memory leak in the iOS kernel that allows attackers to retrievecontent from an iOS device's kernel memory.</li></ul>
+        <pre>
+        All three bugs are believed to have been used together to form a highly sophisticated exploitchain,
+        allowing attackers to compromise iPhone devices remotely.
+        <a href="https://support.apple.com/en-us/HT211929">About the security content of iOS 14.2 and iPadOS 14.2</a>
+        </pre>
+    ]]></description>
+</item>
+        
+<item>
     <title>( 1 ) - Feds Seize $1B in Bitcoin</title>
     <link></link>
     <pubDate>Wed, 11 Nov 2020 17:00:00 SAST</pubDate>
