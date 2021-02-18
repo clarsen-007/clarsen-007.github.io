@@ -17,6 +17,42 @@
 <!--New Items Here-->
         
 <item>
+    <title>( 3 ) - Windows is Stacking</title>
+    <link></link>
+    <pubDate>Fri, 18 Feb 2021 14:20:00 SAST</pubDate>
+    <description><![CDATA[
+        <p>Windows TCP/IP stack</p>
+        <pre>
+        Believe it or not, Windows is STILL experiencing remote code execution vulnerabilities in its TCP/IP stack.
+        As we know, that's the last place you want to have such vulnerabilities because it is by definition exposed to the world.
+        One flaw that Microsoft fixed last week was found in the way Windows handles IPv4 “source routing” and the other was in the way Windows handles IPv6 packet reassembly.
+        
+        Here's what Rapid7 has to say about IP Source Routing:
+        “The host is configured to honor IP source routingoptions.
+        Source routing is a feature of the IP protocol which allows the sender of a packet tospecify which route the packet should take on the way to its destination (and on the way back).
+        Source routing was originally designed to be used when a host did not have proper defaultroutes in its routing table.
+        However, source routing is rarely used for legitimate purposesnowadays.
+        Attackers can abuse source routing to bypass firewalls or to map your network.”
+        </pre> 
+
+        <p>Android SHAREit</p>
+        <pre>
+        Google Play store lists it as: “SHAREit -Transfer & Share”
+        It is a super-popular file exchange app.
+        https://www.trendmicro.com/en_us/research/21/b/shareit-flaw-could-lead-to-remote-code-execution.html
+        
+        It was Trend Micro who examined, discovered and reported the problem to SHAREit's publisher,and received no feedback.
+        Trend Micro wrote:
+        “We discovered several vulnerabilities in the application named SHAREit.
+        The vulnerabilities canbe abused to leak a user’s sensitive data and execute arbitrary code with SHAREit permissionsby using a malicious code or app.
+        They can also potentially lead to Remote Code Execution(RCE).
+        In the past, vulnerabilities that can be used to download and steal files from users’devices have also been associated with the app.
+        While the app allows the transfer and downloadof various file types, such as Android Package (APK), the vulnerabilities related to these featuresare most likely unintended flaws.”
+        </pre>
+    ]]></description>
+</item>
+        
+<item>
     <title>( 2 ) - iOS 14.2 fixes three 0-day vulnerabilities</title>
     <link></link>
     <pubDate>Fri, 13 Nov 2020 14:20:00 SAST</pubDate>
