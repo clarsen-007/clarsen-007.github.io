@@ -93,53 +93,5 @@ Some how to documentation...
   
 <!-- ####################################################### -->
   
-<div class="content" id="xrdp01">
-  <center>
-    <pre>
-      <p class="a">
-        <h3>
-Enable Google Authenticator on Linux XRDP connections.
-        </h3>
-
-First configure SSH 2FA.
-
-1) Change /etc/pam.d/xrdp-sesman file as follow.
-
-$ cat /etc/pam.d/xrdp-sesman
-#%PAM-1.0
-#@include common-auth
-#@include common-account
-#@include common-session
-#@include common-password
-#auth required pam_google_authenticator.so
-auth required pam_google_authenticator.so forward_pass
-auth required pam_unix.so use_first_pass
-
-2) Then create link to google auth file.
-# Currently it only seems to work with .google_authenticator in user's home folder, it would be nice if it working in .ssh/ or similar folder.
-
-ln -s ~/.ssh/.google_authenticator ~/.google_authenticator
-
-$ ls -hail
-000000 lrwxrwxrwx  0 username username   0 Jan  0 00:00 .google_authenticator -> ~/.ssh/.google_authenticator
-
-3) Test - login with XRDP client to server.
-In Password field use ---  password+oth "password123456"
-
-123456 here refers to the 2FA code...
-
-      </p>
-    </pre>
-  </center>
-</div>
-  
-<center>
-   <svg height="5" width="800">
-       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
-   </svg>
-</center>
-  
-<!-- ####################################################### -->
-    
 </body>
 </html>
