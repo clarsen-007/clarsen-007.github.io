@@ -98,6 +98,39 @@ Some how to documentation...
     <pre>
       <p class="a">
 It is important to monitor AWT ( AMP ( Access Module Processor ) Worker Task ) on a Teradata system...
+
+To collect AWT information for DBQL, you can run the following SQL.
+Example below describe collecting data from DBQL via BTEQ...
+
+# bteq
+
+ Teradata BTEQ 16.20.00.10 (32-bit) for LINUX. PID: 12345
+ Copyright 1984-2020 Teradata. All rights reserved.
+ Enter your logon or BTEQ command:
+.logon
+
+.logon
+UserId: xxxxxxx
+Password: 
+
+ *** Logon successfully completed.
+ *** Teradata Database Release is 16.20.53.41                   
+ *** Teradata Database Version is 16.20.53.41                     
+ *** Transaction Semantics are BTET.
+ *** Session Character Set Name is 'ASCII'.
+
+ *** Echo accepted. 
+ *** Total elapsed time was 1 second.
+
+ BTEQ -- Enter your SQL request or BTEQ command: 
+.set separator '|'                                       <<<<<<<<<<<<  Here we set the separator between data for ease of use
+
+ BTEQ -- Enter your SQL request or BTEQ command: 
+.export report file = AWT.monitoring.csv                 <<<<<<<<<<<<  Here we will export our AWT data to a CSV file
+
+ *** To reset export, type .EXPORT RESET
+ BTEQ -- Enter your SQL request or BTEQ command: 
+.set width 20000                                         <<<<<<<<<<<<  Here we set the width of our output
       </p>
     </pre>
   </center>
