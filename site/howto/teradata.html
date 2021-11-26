@@ -149,6 +149,44 @@ to modify SQL as required...
     </pre>
   </center>
 
+<a><pre>
+SELECT
+TheDate
+,TheTime
+,Secs
+,VPRID as TheAMP
+,NodeID
+,MailBoxDepth
+,FlowCOntrolled
+,FlowCtlCnt
+,InUseMax
+,Available
+,AvailableMin
+,WorkTypeMax00 AS DispatcherStep
+,WorkTypeMax01 AS Spawned_Level1
+,WorkTypeMax02 AS Spawned_Level2
+,WorkTypeMax03 AS InternalWork
+,WorkTypeMax04 AS Recovery
+,WorkTypeMax08 AS ExpeditedDispatcherStep
+,WorkTypeMax09 AS ExpeditedSpawned_Level1
+,WorkTypeMax10 AS ExpeditedSpawned_Level2
+,WorkTypeMax12 AS AbortStep
+,WorkTypeMax13 AS SpawnedWorkAbort
+,WorkTypeMax14 AS UrgentInternalWork
+,WorkTypeMax15 AS MostUrgentInterbalWork
+FROM DBC.ResUsageSAWT
+WHERE TheDate = '2000-01-01';                            <<<<<<<<<<<<  Change to date to current date
+</pre></a>
+  
+  <center>
+    <pre>
+      <p class="a">
+SQL explanation:
+
+      </p>
+    </pre>
+  </center>
+
 </div>
   
 <center>
