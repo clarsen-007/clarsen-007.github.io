@@ -195,6 +195,14 @@ SQL explanation:
 - WorkNew ( Work00 )  ---   For any new work - step coming from the dispatcher.
 - Work01              ---   Messages that represent spawned work.  Spawned work happens when a WorkNew message is starting up on all AMPs and the step
                             requires an activity such as row redistribution or table duplication, something that requires more than one AWT per AMP.
+- Work02              ---   2nd level of spawned work.
+- Work03              ---   Short critical internal work.
+- Work04              ---   For recovery work.
+- Work12              ---   Transaction end and abort work.
+- Work13              ---   Spawned transaction end and abort work.
+- Work14              ---   Urgent internal requests and response work.
+- Work15              ---   Most urgent internal work.
+
   </pre>
   
 <img src="https://clarsen-007.github.io/site/images/howto.page.images/awt.spreadsheet.1.png">
