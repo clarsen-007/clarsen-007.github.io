@@ -186,6 +186,10 @@ WHERE TheDate between '2000-01-01' and '2000-1-09';
     <pre>
       <p class="a">
 SQL explanation:
+- WorkNew ( Work00 )  ---   For any new work - step coming from the dispatcher.
+- Work01              ---   Messages that represent spawned work.  Spawned work happens when a WorkNew message is starting up on all AMPs and the step
+                            requires an activity such as row redistribution or table duplication, something that requires more than one AWT per AMP.
+ 
 
       </p>
     </pre>
