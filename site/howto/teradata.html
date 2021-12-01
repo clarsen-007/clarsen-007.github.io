@@ -258,6 +258,26 @@ Here are some SQL to monitor skew...
   </center>
 </div>
   
+Amp Cpu Skew from Active sessions ( MonitorSession )
+
+SEL UserName (TITLE 'Users', format 'X(20)'),
+SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
+(100 * (1 - (AvgAmpCpuSec / NULLIFZERO(HotAmp1Cpu))))
+(TITLE 'Amp CPU Skew %',FORMAT 'ZZ9')
+FROM TABLE (SYSLIB.MonitorSession(-1,'*',0)) AS t1
+WHERE AmpState='ACTIVE' AND HotAmp1Cpu > 0
+ORDER BY 1,2;
+  
+Amp IO Skew from Active sessions ( MonitorSession )
+
+SEL UserName (TITLE 'Users', format 'X(20)'),
+SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
+(100 * (1 - (AvgAmpIOCnt / NULLIFZERO(HotAmp1IO))))
+(TITLE 'Amp IO Skew %',FORMAT 'ZZ9')
+FROM TABLE (SYSLIB.MonitorSession(-1,'*',0)) AS t1
+WHERE AmpState='ACTIVE' AND HotAmp1IO > 0
+ORDER BY 1,2;
+  
 <center>
    <svg height="5" width="800">
        <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
