@@ -266,12 +266,14 @@ Amp Cpu Skew from Active sessions ( MonitorSession ).
   </p>
   
   <pre>
-SEL UserName (TITLE 'Users', format 'X(20)'),
-SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
-(100 * (1 - (AvgAmpCpuSec / NULLIFZERO(HotAmp1Cpu))))
+SELECT
+UserName (TITLE 'Users', format 'X(20)')
+,SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ')
+,(100 * (1 - (AvgAmpCpuSec / NULLIFZERO(HotAmp1Cpu))))
 (TITLE 'Amp CPU Skew %',FORMAT 'ZZ9')
 FROM TABLE (SYSLIB.MonitorSession(-1,'*',0)) AS t1
-WHERE AmpState='ACTIVE' AND HotAmp1Cpu > 0
+WHERE AmpState='ACTIVE'
+AND HotAmp1Cpu > 0
 ORDER BY 1,2;
   </pre>
 
