@@ -257,9 +257,9 @@ Here are some SQL to monitor skew...
     </pre>
   </center>
   
-  <pre>
 Amp Cpu Skew from Active sessions ( MonitorSession ).
 
+  <pre>
 SEL UserName (TITLE 'Users', format 'X(20)'),
 SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
 (100 * (1 - (AvgAmpCpuSec / NULLIFZERO(HotAmp1Cpu))))
@@ -267,9 +267,11 @@ SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
 FROM TABLE (SYSLIB.MonitorSession(-1,'*',0)) AS t1
 WHERE AmpState='ACTIVE' AND HotAmp1Cpu > 0
 ORDER BY 1,2;
+  </pre>
   
 Amp IO Skew from Active sessions ( MonitorSession ).
 
+  <pre>
 SEL UserName (TITLE 'Users', format 'X(20)'),
 SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
 (100 * (1 - (AvgAmpIOCnt / NULLIFZERO(HotAmp1IO))))
@@ -277,9 +279,11 @@ SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
 FROM TABLE (SYSLIB.MonitorSession(-1,'*',0)) AS t1
 WHERE AmpState='ACTIVE' AND HotAmp1IO > 0
 ORDER BY 1,2;
+  </pre>
 
 Look at skew for database and / or table.
-  
+
+    <pre>
 SELECT
 databasename
 ,tablename
