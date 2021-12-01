@@ -258,7 +258,7 @@ Here are some SQL to monitor skew...
   </center>
 </div>
   
-Amp Cpu Skew from Active sessions ( MonitorSession )
+Amp Cpu Skew from Active sessions ( MonitorSession ).
 
 SEL UserName (TITLE 'Users', format 'X(20)'),
 SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
@@ -268,7 +268,7 @@ FROM TABLE (SYSLIB.MonitorSession(-1,'*',0)) AS t1
 WHERE AmpState='ACTIVE' AND HotAmp1Cpu > 0
 ORDER BY 1,2;
   
-Amp IO Skew from Active sessions ( MonitorSession )
+Amp IO Skew from Active sessions ( MonitorSession ).
 
 SEL UserName (TITLE 'Users', format 'X(20)'),
 SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
@@ -277,6 +277,20 @@ SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
 FROM TABLE (SYSLIB.MonitorSession(-1,'*',0)) AS t1
 WHERE AmpState='ACTIVE' AND HotAmp1IO > 0
 ORDER BY 1,2;
+
+Look at skew for database and / or table.
+  
+SELECT
+databasename
+,tablename
+,sum(currentperm)
+,(100-(min(currentperm)/nullifzero(max(currentperm)))*100) (smallint) (title 'Skew')
+from dbc.tablesize
+where databasename='<dbname>'
+ -- remove the below -- if you wnat to look at the table level
+ -- and tablename='<tblname>'
+group by 1,2
+order by 4 desc;
   
 <center>
    <svg height="5" width="800">
