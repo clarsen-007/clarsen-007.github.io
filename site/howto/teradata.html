@@ -305,7 +305,7 @@ databasename
 ,(100-(min(currentperm)/nullifzero(max(currentperm)))*100) (smallint) (title 'Skew')
 from dbc.tablesize
 where databasename='<dbname>'
- -- remove the below -- if you wnat to look at the table level
+ -- remove the below -- if you want to look at the table level
  -- and tablename='<tblname>'
 group by 1,2
 order by 4 desc;
