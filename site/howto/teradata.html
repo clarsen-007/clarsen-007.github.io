@@ -7,6 +7,10 @@ p.a {
   font-size: 16px;
 }
   
+p.thick {
+  font-weight: bold;
+  }
+  
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
@@ -257,8 +261,10 @@ Here are some SQL to monitor skew...
     </pre>
   </center>
   
+<p class="thick">
 Amp Cpu Skew from Active sessions ( MonitorSession ).
-
+</p>
+  
   <pre>
 SEL UserName (TITLE 'Users', format 'X(20)'),
 SessionNo (TITLE 'Session', FORMAT 'Z(9)ZZZ'),
