@@ -310,9 +310,41 @@ where databasename='database_name'
 group by 1,2
 order by 4 desc;
   </pre>
+
+  <p class="thick">
+The following query identifies tables that are not evenly distributed.
+  </p>
+
+    <pre>  
+SELECT (MAX(CurrentPerm) - MIN(CurrentPerm)) * 100
+             /(NULLIF(MIN(currentperm),0))(NAMED variance)
+            (FORMAT 'zzzzz9.99%'),MAX(CurrentPerm)(TITLE 'Max')
+            (FORMAT 'zzz,zzz,zzz,999'),MIN(currentperm)
+            (TITLE 'Min')(FORMAT 'zzz,zzz,zzz,999'),
+             TRIM(DatabaseName)||'.'||TableName (NAMED Tables)
+FROM DBC.TablesizeV
+GROUP BY DatabaseName, TableName
+HAVING SUM(CurrentPerm) > 1000000
+AND    variance > 1000
+WHERE DatabaseName NOT IN('CrashDumps','DBC')
+ORDER BY Tables;
+  </pre>
+
+  <p class="thick">
+Use the following query to display the detailed distribution of a table that has been identified.
+  </p>
+
+    <pre>
+ SELECT vproc
+ ,CurrentPerm
+ FROM DBC.TablesizeV
+ WHERE DatabaseName = 'database_name'
+ AND TableName = 'table_name'
+ ORDER BY 1;
+  </pre>
   
   <p class="thick">
-Very simple explanation of Skew Data.
+Very verysimple explanation of Skew Data.
   </p>
 
   <center>
