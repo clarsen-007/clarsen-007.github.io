@@ -430,10 +430,10 @@ TheDate (FORMAT 'YYYY-MM-DD')
 ,WM_COD_CPU
 ,WM_COD_IO
 ,((CPUUServ + CPUUExec)  / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle ) * 100) (NAMED "Busy%", FORMAT 'Z(1)99')
-,(CPUUExec / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle )*100) (NAMED "User%", FORMAT 'Z(1)99')
-,(CPUUServ / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle )*100) (NAMED "OS%", FORMAT 'Z(1)99')
-,(CPUIOWait / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle )*100) (NAMED "IOWait%", FORMAT 'Z(1)99')
-,(CPUIdle / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle )*100) (NAMED "Idle%", FORMAT 'Z(1)99')
+,(CPUUExec / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle ) * 100) (NAMED "User%", FORMAT 'Z(1)99')
+,(CPUUServ / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle ) * 100) (NAMED "OS%", FORMAT 'Z(1)99')
+,(CPUIOWait / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle ) * 100) (NAMED "IOWait%", FORMAT 'Z(1)99')
+,(CPUIdle / (CPUUServ+CPUUExec+CPUIOWait+CPUIdle ) * 100) (NAMED "Idle%", FORMAT 'Z(1)99')
 ,CPUPRocSwitches
 ,PageMajorFaults
 ,PageMinorFaults
