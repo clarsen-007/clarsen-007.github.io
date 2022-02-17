@@ -74,6 +74,7 @@ div.content {
   <a href="#tera01">AMP Worker Task utilization ( Flow Control )</a>
   <a href="#tera02">Skew</a>
   <a href="#tera03">CPU utilization</a>
+  <a href="#tera04">AMP Monitoring</a>
 </div>
 
 <div class="content" id="home">
@@ -508,8 +509,137 @@ Image one:
 </center>
   
 <!-- ####################################################### -->
+
+
+<div class="content" id="tera04">
+  <center>
+    <pre>
+      <p class="a">
+Monitoring AMP performance...
+
+LastDone...
+
+      </p>
+    </pre>
+  </center>
+
+<a><pre>
+# bteq
+
+ Teradata BTEQ 17.xx.xx.xx (32-bit) for LINUX. PID: 12345
+ Copyright 1984-2022 Teradata. All rights reserved.
+ Enter your logon or BTEQ command:
+.logon
+
+.logon
+UserId: xxxxxxx
+Password: 
+
+ *** Logon successfully completed.
+ *** Teradata Database Release is 17.xx.xx.xx                   
+ *** Teradata Database Version is 17.xx.xx.xx                     
+ *** Transaction Semantics are BTET.
+ *** Session Character Set Name is 'ASCII'.
+
+ *** Echo accepted. 
+ *** Total elapsed time was 1 second.
+
+ BTEQ -- Enter your SQL request or BTEQ command: 
+.set separator '|'                                       <<<<<<<<<<<<  Here we set the separator between data for ease of use
+
+ BTEQ -- Enter your SQL request or BTEQ command: 
+.export report file = LastDone.csv                 <<<<<<<<<<<<  Here we will export our CPU data to a CSV file
+
+ *** To reset export, type .EXPORT RESET
+ BTEQ -- Enter your SQL request or BTEQ command: 
+.set width 20000                                         <<<<<<<<<<<<  Here we set the width of our output
+</pre></a>
+  
+  <center>
+    <pre>
+      <p class="a">
+Now you can run the required SQL. Here you can use any SQL that you require.
+For the purpose of this “How To” page, I’ll run the following SQL, but please feel free
+to modify SQL as required...
+
+      </p>
+    </pre>
+  </center>
+
+<a><pre>
+LOCKING DBC.ResUsageSVPR for access
+SELECT  TheDate
+,TheTime
+,NodeId
+,VprId
+,SUM(MsgChnLastDone)   (NAMED LastDone)
+FROM  DBC.ResUsageSVPR
+WHERE  VprType LIKE 'AM%' AND TheDate '2000-01-01'          <<<<<<<<<<<<  Change to current date
+GROUP  BY 1,2,3,4
+ORDER  BY 1,2,3 desc;
+                  
+
+If a date range is required, then replace line with -
+WHERE  VprType LIKE 'AM%' AND TheDate between '2000-01-01' and '2000-1-09'
+</pre></a>
+  
+  <center>
+    <pre>
+      <p class="a">
+Explanation:
+      </p>
+    </pre>
+  </center>
+  
+  <pre>
+- WM_COD_CPU              --- Workload Management CPU Capacity On Demand.
+- WM_COD_IO               --- Workload Management I/O Capacity On Demand.
+- CPUUServ                ---	Time CPUs are busy executing user service code.
+- CPUUExec                --- Time CPUs are busy executing user execution code.
+- CPUIoWait               --- Time CPUs are idle and waiting for I/O completion.
+- CPUIdle                 --- Time CPUs are idle and not waiting for I/O.
+- CPUProcSwitches         --- Number of times the scheduler switched a currently active process of a CPU to a new process.
+- PageMajorFaults         --- Number of major page faults.
+- PageMinorFaults         --- Number of minor page faults.
+- NLBActiveSessionsMax    --- Maximum concurrent Node Level Buffering sessions.
+- NLBSessionsInuse        --- Nmber of active Node Level Buffering sessions.
+- NLBSessionsCompleted    --- Number of Node Level Buffering sessions completed.
+- NLBMsgFlowControlled    --- Number of Node Level Buffered messages being flow controlled on the node.
+- NLBMsgFlowControlledKB  --- Amount of segment memory in use by Flow Controlled NLBM's.
+
+  </pre>
+  
+  <center>
+    <pre>
+      <p class="a">
+For me, the easiest way to view data, is to use PivotCharts.
+      </p>
+    </pre>
+  </center>
+  
+  <pre>
+Image one below - please see Filters in image - The Date or Time on the bottom X axis.
+                  Y axis, selected Busy, User and OS - for CPU values.
+                  OS%     --  This is the Operating System.
+                  User%   --  This is Teradata.
+                  Busy%   --  Total.
+
+
+Image one:
+
+<img src="https://clarsen-007.github.io/site/images/howto.page.images/cpu.spreadsheet.1.png">
+
+  </pre>
+    
+</div>
+  
+<center>
+   <svg height="5" width="800">
+       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+   </svg>
+</center>
   
 <!-- ####################################################### -->
-  
+ 
 </body>
 </html>
