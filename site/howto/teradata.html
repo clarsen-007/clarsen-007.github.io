@@ -77,6 +77,7 @@ div.content {
   <a href="#tera05">AMP monitoring</a>
   <a href="#tera06">Memory utilization</a>
   <a href="#tera07">User Impact</a>
+  <a href="#tera08">Access Rights</a>
 </div>
 
 <div class="content" id="home">
@@ -761,6 +762,237 @@ GROUP BY 1,2;
 
 For all users remove line -
 AND dlt.UserName LIKE ANY ( 'username' )
+</pre></a>
+  
+  <center>
+    <pre>
+      <p class="a">
+Explanation:
+      </p>
+    </pre>
+  </center>
+  
+  <pre>
+-                         --- .
+
+
+  </pre>
+  
+  <center>
+    <pre>
+      <p class="a">
+For me, the easiest way to view data, is to use PivotCharts.
+      </p>
+    </pre>
+  </center>
+  
+  <pre>
+Image one below - 
+
+
+Image one:
+
+<img src="https://clarsen-007.github.io/site/images/howto.page.images/userimp.spreadsheet.1.png">
+<img src="https://clarsen-007.github.io/site/images/howto.page.images/userimp.spreadsheet.2.png">
+
+  </pre>
+    
+</div>
+  
+<center>
+   <svg height="5" width="800">
+       <line x1="0" y1="0" x2="800" y2="0" style="stroke:rgb(0,0,0);stroke-width:5" />
+   </svg>
+</center>
+  
+<!-- ####################################################### -->
+
+
+<div class="content" id="tera08">
+  <center>
+    <pre>
+      <p class="a">
+Access Rights...
+
+
+      </p>
+    </pre>
+  </center>
+
+  
+  <center>
+    <pre>
+      <p class="a">
+For the purpose of this “How To” page, I’ll run the following SQL, but please feel free
+to modify SQL as required...
+
+      </p>
+    </pre>
+  </center>
+
+<a><pre>
+--  Query that shows the total rights on a user (Please modify user_name in query below).
+
+SEL  DatabaseName, TableName, AccessRight 
+    FROM     DBC.AllRoleRights 
+    WHERE    RoleName = (
+    SEL  RoleName 
+    FROM     DBC.Users 
+    WHERE    UserName = 'SYSADMIN')
+    UNION ALL
+    SEL DatabaseName, TableName, AccessRight
+    FROM DBC.AllRights
+    WHERE UserName = '<user_name>';
+
+
+--  Query to find the users with the highest entries in DBC.ACCESSRIGHTS.
+
+SEL count(*) (TITLE '# of//Entries', FORMAT 'ZZZZZZ9'),
+    cast(b.databasenamei as varchar(30)) (TITLE 'UserName'),
+    cast(c.databasenamei as varchar(30)) (TITLE 'DatabaseName')
+    FROM dbc.accessrights a , dbase B, dbase c
+    WHERE a.userid = b.databaseid
+    and a.databaseid = c.databaseid
+    GROUP BY 2,3
+    ORDER BY 1 DESC,2;
+
+
+--  Query to copy access rights for a certain user (Please modify user_name in query below)
+      
+SELECT          UserName
+                        ,DatabaseName
+                        ,TableName
+                        ,ColumnName
+                        ,AccessRight
+                        ,GrantAuthority
+                        ,'GRANT '||
+                        CASE
+                                WHEN    AccessRight     = 'CD'
+                                THEN    'CREATE DATABASE'
+                                WHEN    AccessRight     = 'DD'
+                                THEN    'DROP DATABASE'
+                                WHEN    AccessRight     = 'CU'
+                                THEN    'CREATE USER'
+                                WHEN    AccessRight     = 'DU'
+                                THEN    'DROP USER'
+                                WHEN    AccessRight     = 'CT'
+                                THEN    'CREATE TABLE'
+                                WHEN    AccessRight     = 'DT'
+                                THEN    'DROP TABLE'
+                                WHEN    AccessRight     = 'CV'
+                                THEN    'CREATE VIEW'
+                                WHEN    AccessRight     = 'DV'
+                                THEN    'DROP VIEW'
+                                WHEN    AccessRight     = 'CM'
+                                THEN    'CREATE MACRO'
+                                WHEN    AccessRight     = 'DM'
+                                THEN    'DROP MACRO'
+                                WHEN    AccessRight     = 'CG'
+                                THEN    'CREATE TRIGGER'
+                                WHEN    AccessRight     = 'DG'
+                                THEN    'DROP TRIGGER'
+                                WHEN    AccessRight     = 'PC'
+                                THEN    'CREATE PROCEDURE'
+                                WHEN    AccessRight     = 'PD'
+                                THEN    'DROP PROCEDURE'
+                                WHEN    AccessRight     = 'CF'
+                                THEN    'CREATE FUNCTION'
+                                WHEN    AccessRight     = 'DF'
+                                THEN    'DROP FUNCTION'
+                                WHEN    AccessRight     = 'IX'
+                                THEN    'INDEX'
+                                WHEN    AccessRight     = 'RF'
+                                THEN    'REFERENCES'
+                                WHEN    AccessRight     = 'R' 
+                                THEN    'SELECT' 
+
+                                WHEN    AccessRight     = 'U'
+                                THEN    'UPDATE'
+                        
+                                WHEN    AccessRight     = 'I'
+                                THEN    'INSERT'
+                        
+                                WHEN    AccessRight     = 'D'
+                                THEN    'DELETE'
+                        
+                                WHEN    AccessRight     = 'E'
+                                THEN    'EXECUTE'
+                        
+                                WHEN    AccessRight     = 'CP'
+                                THEN    'CHECKPOINT'
+                        
+                                WHEN    AccessRight     = 'DP'
+                                THEN    'DUMP'
+                        
+                                WHEN    AccessRight     = 'RS'
+                               THEN    'RESTORE'
+                        
+                               WHEN    AccessRight     = 'CR'
+                                THEN    'CREATE ROLE'
+                        
+                                WHEN    AccessRight     = 'DR'
+                                THEN    'DROP ROLE'
+                        
+                                WHEN    AccessRight     = 'CO'
+                                THEN    'CREATE PROFILE'
+                        
+                               WHEN    AccessRight     = 'DO'
+                                THEN    'DROP PROFILE'
+                        
+                                WHEN    AccessRight     = 'PE'
+                                THEN    'EXECUTE PROCEDURE'
+                        
+                               WHEN    AccessRight     = 'SS'
+                               THEN    'SET SESSION RATE'
+                        
+                                WHEN    AccessRight     = 'SR'
+                                THEN    'SET RESOURCE RATE'
+                        
+                                WHEN    AccessRight     = 'AS'
+                                THEN    'ABORT SESSION'
+                        
+                                WHEN    AccessRight     = 'MR'
+                                THEN    'MONITOR RESOURCE'
+                        
+                                WHEN    AccessRight     = 'MS'
+                               THEN    'MONITOR SESSION'
+                        
+                                WHEN    AccessRight     = 'AF'
+                               THEN    'ALTER FUNCTION'
+                        
+                                WHEN    AccessRight     = 'EF'
+                              THEN    'EXECUTE FUNCTION'
+                        
+                                WHEN    AccessRight     = 'AP'
+                                THEN    'ALTER PROCEDURE'
+                        
+                            END||' ON '||
+                            CASE
+                    
+                              WHEN ColumnName NOT = 'All'
+                                THEN    TRIM(DatabaseName)||'.'||TRIM(TableName)||'.'||TRIM(ColumnName)
+                    
+                            WHEN TableName NOT = 'All'
+                                THEN    TRIM(DatabaseName)||'.'||TRIM(TableName)
+                    
+                               ELSE TRIM(DatabaseName)
+              
+                            END||' TO '||TRIM(UserName)||
+                            CASE 
+                                WHEN GrantAuthority = 'Y' 
+                                THEN ' WITH GRANT OPTION;' 
+                                ELSE ';' 
+                        END     AS GRANT_SQL
+                
+        FROM            DBC.AllRightsV
+
+        WHERE           (UserName = 'SYSADMIN')
+
+        ORDER BY        DatabaseName
+;
+
+
+
 </pre></a>
   
   <center>
