@@ -757,7 +757,7 @@ dlt.UserName
 ,246.00 * 24 * 0.90 (TITLE 'Sum_AvailTPerfHour', FORMAT 'zzz,zzz,zzz,999')
 FROM pdcrinfo.dbqlogtbl_hst dlt
 WHERE dlt.LogDate > CURRENT_DATE -95
-AND dlt.UserName LIKE ANY ( 'usernam' )
+AND dlt.UserName LIKE ANY ( 'username' )
 GROUP BY 1,2;
 
 For all users remove line -
@@ -842,7 +842,7 @@ SEL  DatabaseName, TableName, AccessRight
     UNION ALL
     SEL DatabaseName, TableName, AccessRight
     FROM DBC.AllRights
-    WHERE UserName = '<user_name>';
+    WHERE UserName = '_____';
 
 
 --  Query to find the users with the highest entries in DBC.ACCESSRIGHTS.
@@ -959,7 +959,7 @@ SELECT          UserName
                                 ELSE ';' 
                         END     AS GRANT_SQL
         FROM            DBC.AllRightsV
-        WHERE           (UserName = '<user_name>')
+        WHERE           (UserName = '_____')
         ORDER BY        DatabaseName;
 
 
