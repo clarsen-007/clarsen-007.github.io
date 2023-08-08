@@ -905,129 +905,74 @@ SELECT          UserName
                                 THEN    'REFERENCES'
                                 WHEN    AccessRight     = 'R' 
                                 THEN    'SELECT' 
-
                                 WHEN    AccessRight     = 'U'
                                 THEN    'UPDATE'
-                        
                                 WHEN    AccessRight     = 'I'
                                 THEN    'INSERT'
-                        
                                 WHEN    AccessRight     = 'D'
                                 THEN    'DELETE'
-                        
                                 WHEN    AccessRight     = 'E'
                                 THEN    'EXECUTE'
-                        
                                 WHEN    AccessRight     = 'CP'
                                 THEN    'CHECKPOINT'
-                        
                                 WHEN    AccessRight     = 'DP'
                                 THEN    'DUMP'
-                        
                                 WHEN    AccessRight     = 'RS'
-                               THEN    'RESTORE'
-                        
-                               WHEN    AccessRight     = 'CR'
+                                THEN    'RESTORE'
+                                WHEN    AccessRight     = 'CR'
                                 THEN    'CREATE ROLE'
-                        
                                 WHEN    AccessRight     = 'DR'
                                 THEN    'DROP ROLE'
-                        
                                 WHEN    AccessRight     = 'CO'
                                 THEN    'CREATE PROFILE'
-                        
-                               WHEN    AccessRight     = 'DO'
+                                WHEN    AccessRight     = 'DO'
                                 THEN    'DROP PROFILE'
-                        
                                 WHEN    AccessRight     = 'PE'
                                 THEN    'EXECUTE PROCEDURE'
-                        
-                               WHEN    AccessRight     = 'SS'
-                               THEN    'SET SESSION RATE'
-                        
+                                WHEN    AccessRight     = 'SS'
+                                THEN    'SET SESSION RATE'
                                 WHEN    AccessRight     = 'SR'
                                 THEN    'SET RESOURCE RATE'
-                        
                                 WHEN    AccessRight     = 'AS'
                                 THEN    'ABORT SESSION'
-                        
                                 WHEN    AccessRight     = 'MR'
                                 THEN    'MONITOR RESOURCE'
-                        
                                 WHEN    AccessRight     = 'MS'
-                               THEN    'MONITOR SESSION'
-                        
+                                THEN    'MONITOR SESSION'
                                 WHEN    AccessRight     = 'AF'
-                               THEN    'ALTER FUNCTION'
-                        
+                                THEN    'ALTER FUNCTION'
                                 WHEN    AccessRight     = 'EF'
-                              THEN    'EXECUTE FUNCTION'
-                        
+                                THEN    'EXECUTE FUNCTION'
                                 WHEN    AccessRight     = 'AP'
                                 THEN    'ALTER PROCEDURE'
-                        
                             END||' ON '||
                             CASE
-                    
-                              WHEN ColumnName NOT = 'All'
+                                WHEN ColumnName NOT = 'All'
                                 THEN    TRIM(DatabaseName)||'.'||TRIM(TableName)||'.'||TRIM(ColumnName)
-                    
-                            WHEN TableName NOT = 'All'
+                                WHEN TableName NOT = 'All'
                                 THEN    TRIM(DatabaseName)||'.'||TRIM(TableName)
-                    
-                               ELSE TRIM(DatabaseName)
-              
+                            ELSE TRIM(DatabaseName)
                             END||' TO '||TRIM(UserName)||
                             CASE 
                                 WHEN GrantAuthority = 'Y' 
                                 THEN ' WITH GRANT OPTION;' 
                                 ELSE ';' 
                         END     AS GRANT_SQL
-                
         FROM            DBC.AllRightsV
-
-        WHERE           (UserName = 'SYSADMIN')
-
-        ORDER BY        DatabaseName
-;
+        WHERE           (UserName = '<user_name>')
+        ORDER BY        DatabaseName;
 
 
+--  To determine which users have the privilege to force other users off the system (AS is an abbreviation for the abort session).
+
+SEL DISTINCT username, 
+        accessright, 
+        grantauthority 
+        FROM dbc.allrights 
+        WHERE accessright = 'AS'; 
 
 </pre></a>
-  
-  <center>
-    <pre>
-      <p class="a">
-Explanation:
-      </p>
-    </pre>
-  </center>
-  
-  <pre>
--                         --- .
 
-
-  </pre>
-  
-  <center>
-    <pre>
-      <p class="a">
-For me, the easiest way to view data, is to use PivotCharts.
-      </p>
-    </pre>
-  </center>
-  
-  <pre>
-Image one below - 
-
-
-Image one:
-
-<img src="https://clarsen-007.github.io/site/images/howto.page.images/userimp.spreadsheet.1.png">
-<img src="https://clarsen-007.github.io/site/images/howto.page.images/userimp.spreadsheet.2.png">
-
-  </pre>
-    
 </div>
   
 <center>
